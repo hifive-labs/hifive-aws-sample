@@ -1,0 +1,31 @@
+{
+  "name": "hifive-eb-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "prettier": "^1.11.1",
+    "eslint-plugin-prettier": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint **/*.js"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hifive-labs/hifive-eb-sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hifive-labs/hifive-eb-sample/issues"
+  },
+  "homepage": "https://github.com/hifive-labs/hifive-eb-sample#readme"
+}
