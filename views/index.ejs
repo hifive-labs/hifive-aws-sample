@@ -9,11 +9,12 @@
     <p>Welcome to <%= title %></p>
     <div id="container">
       <form
+              id="rekognition-form"
               method="POST"
               enctype="multipart/form-data"
-              action="/rekognition">
-        <input type="file" name="image"></input>
-        <input type="submit"></input>
+      >
+        <input id="rekognition-input" type="file" name="image"/>
+        <input id="rekognition-submit" type="submit"/>
       </form>
       <input type="button" id="btn" value="hello world!" />
     </div>
@@ -26,5 +27,9 @@
   <link href="https://code.htmlhifive.com/h5.css" rel="stylesheet">
   <script src="https://code.htmlhifive.com/ejs-h5mod.js"></script>
   <script src="https://code.htmlhifive.com/h5.dev.js"></script>
-  <script src="/javascripts/controllers/indexController.js"></script>
+  <script src="/javascripts/controllers/helloWorldController.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </html>
