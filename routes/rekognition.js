@@ -1,8 +1,23 @@
 const express = require('express');
 const router = express.Router();
-
 const proxy = require('proxy-agent');
 const AWS = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const s3 = new AWS.S3();
+
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'hifive-eb-sample',
+        metadata: function (req, file, cb) {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function (req, file, cb) {
+            cb(null, `imgs/${Date.now().toString()}-${file.originalname}`)
+        }
+    })
+});
 
 AWS.config.update({region: 'ap-northeast-1'});
 AWS.config.update({
@@ -11,13 +26,13 @@ AWS.config.update({
 
 const rekognition = new AWS.Rekognition();
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
+router.post('/', upload.array('image', 1), (req, res, next) => {
+    const image = req.files[0];
     const params = {
         Image: {
             S3Object: {
-                Bucket: "hifive-eb-sample",
-                Name: "imgs/cat.jpg"
+                Bucket: image.bucket,
+                Name: image.key,
             }
         },
     };
