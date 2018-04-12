@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const proxy = require('proxy-agent');
@@ -21,7 +23,7 @@ const upload = multer({
 
 AWS.config.update({region: 'ap-northeast-1'});
 AWS.config.update({
-    httpOptions: { agent: proxy(process.env.HTTPS_PROXY) }
+    httpOptions: { agent: proxy(process.env.https_proxy) }
 });
 
 const rekognition = new AWS.Rekognition();
