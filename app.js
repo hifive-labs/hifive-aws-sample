@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const rekognitionRouter = require('./routes/rekognition');
+const S3Service = require('./services/s3');
 
 const app = express();
 
@@ -37,3 +38,17 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+// S3 initialize FIXME
+const bucketName = process.env.HIFIVE_EB_SAMPLE_S3_BUCKET || "hifive-eb-sample";
+S3Service.createS3BucketIfDoesNotExist(bucketName, (err, data) => {
+  if (err) {
+    console.error('S3 bucket creating is failed: ' + bucketName);
+    process.exit(1);
+  }
+  if (data.created) {
+    console.log(`S3 bucket is created to ${bucketName}`)
+  }else {
+    console.log(`S3 bucket(${bucketName}) already exist`);
+  }
+});
