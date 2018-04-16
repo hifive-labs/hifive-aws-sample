@@ -11,7 +11,7 @@ const s3 = new AWS.S3();
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'hifive-eb-sample',
+    bucket: process.env.HIFIVE_EB_SAMPLE_S3_BUCKET || 'hifive-eb-sample',
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },
