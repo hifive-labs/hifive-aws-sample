@@ -30,6 +30,7 @@ const rekognition = new AWS.Rekognition();
 
 router.post('/', upload.array('image', 1), (req, res, next) => {
     const image = req.files[0];
+    console.log(`Image uploaded to ${image.bucket}/${image.key}`);
     const params = {
         Image: {
             S3Object: {

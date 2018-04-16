@@ -4,7 +4,7 @@ $(() => {
   const DialogController = {
     __name: 'DialogController',
 
-    _rekogLogic: RekogLogic,
+    _rekognitionLogic: RekognitionLogic,
 
     /**
      * ダイアログを表示する
@@ -47,12 +47,12 @@ $(() => {
       const fd = new FormData();
       fd.append('image', this.$find('#uploadBtn').prop('files')[0]);
 
-      this._rekogLogic.postImagetoRekog(fd).done((data) => {
+      this._rekognitionLogic.postImagetoRekognition(fd).done((data) => {
         // 成功したら、親コントローラーにイベントを飛ばす
         this.trigger('rekognized', data);
       }).fail((error) => {
         // 失敗した場合はログを出す
-        console.log(error);
+        console.error(error);
       }).always(() => {
         // 成功、失敗に関わらずダイアログを閉じる
         this.closeDialog();
