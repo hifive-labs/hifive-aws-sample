@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
+#result_area {
+    height: 10em;
+}
+
 .mdl-button--file input {
     cursor: pointer;
     height: 100%;

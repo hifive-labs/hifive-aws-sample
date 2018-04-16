@@ -1,3 +1,5 @@
+'use strict';
+
 $(() => {
   const RootController = {
     __name: 'RootController',
@@ -14,12 +16,9 @@ $(() => {
       this._dialogController.showDialog();
     },
 
-    '.close click': function(context) {
-      this._dialogController.closeDialog();
-    },
-
     '{rootElement} rekognized': function(context, $el) {
       this.$find('#result_area').val(JSON.stringify(context.evArg));
+      this.$find('#result_area')[0].parentNode.MaterialTextfield.checkDirty();
     },
   };
   h5.core.controller('#container', RootController);
