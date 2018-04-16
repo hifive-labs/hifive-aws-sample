@@ -22,9 +22,12 @@ const upload = multer({
 });
 
 AWS.config.update({ region: 'ap-northeast-1' });
-AWS.config.update({
-  httpOptions: { agent: proxy(process.env.HTTPS_PROXY) }
-});
+
+if(process.env.HTTPS_PROXY) {
+    AWS.config.update({
+        httpOptions: { agent: proxy(process.env.HTTPS_PROXY) }
+    });
+}
 
 const rekognition = new AWS.Rekognition();
 
