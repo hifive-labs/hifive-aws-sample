@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const proxy = require('proxy-agent');
@@ -27,15 +29,16 @@ AWS.config.update({
 const rekognition = new AWS.Rekognition();
 
 router.post('/', upload.array('image', 1), (req, res, next) => {
-  const image = req.files[0];
-  const params = {
-    Image: {
-      S3Object: {
-        Bucket: image.bucket,
-        Name: image.key
-      }
-    }
-  };
+    const image = req.files[0];
+    console.log(`Image uploaded to ${image.bucket}/${image.key}`);
+    const params = {
+        Image: {
+            S3Object: {
+                Bucket: image.bucket,
+                Name: image.key,
+            }
+        },
+    };
   rekognition.detectLabels(params, (err, data) => {
     if (err) {
         res.send(JSON.stringify({error: err, stack: err.stack}));
