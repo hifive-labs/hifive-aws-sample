@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>hifive AWS Sample</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -26,7 +26,7 @@
 <body>
 <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title"><%= title %></span>
+        <span class="mdl-layout-title">hifive AWS Sample</span>
     </div>
 </header>
 <div id="container" class="mdl-grid">
@@ -38,7 +38,27 @@
         <label class="mdl-textfield__label" for="result">ここに結果が出ます</label>
     </div>
     <div id="post-dialog">
-        <%- include('./dialog.ejs', {param:'param'}) %>
+        <dialog class="mdl-dialog">
+            <div class="mdl-dialog__content">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+                    <input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly/>
+                    <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                        <i class="material-icons">attach_file</i>
+                        <input type="file" id="uploadBtn">
+                    </div>
+                </div>
+                <form
+                        id="rekognition-form"
+                        method="POST"
+                        enctype="multipart/form-data"
+                >
+                    <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                        <button type="submit" class="mdl-button">submit</button>
+                        <button type="reset" class="mdl-button close">cancel</button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
     </div>
 </div>
 </body>
