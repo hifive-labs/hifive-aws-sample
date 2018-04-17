@@ -26,7 +26,18 @@ $(() => {
      * @param $el DOMのElement
      */
     '#uploadBtn change': function(context, $el) {
-      this.$find('#uploadFile').val($el[0].files[0].name);
+      const file = $el[0].files[0];
+      this.$find('#uploadFile').val(file.name);
+
+      const self = this;
+      const reader = new FileReader();
+      // ファイル読み込みが完了した際のイベント登録
+      reader.onload = ((file) => {
+        return (e) => {
+          self.trigger('image-selected', {file, fileUrl: e.target.result});
+        };
+      })(file);
+      reader.readAsDataURL(file);
     },
 
     /**
