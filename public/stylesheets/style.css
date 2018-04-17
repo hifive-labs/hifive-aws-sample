@@ -30,3 +30,11 @@ a {
 .mdl-textfield--file .mdl-button--file {
     right: 0;
 }
+
+#input-form {
+    text-align:center;
+}
+
+#upload-file-button {
+    width: 100%;
+}
