@@ -4,7 +4,7 @@ $(() => {
   const rekognitionLogic = {
     __name: 'RekognitionLogic',
     apiHost: '',
-    // apiHost: 'http://hifive-eb-sample.imbbjfxxgq.ap-northeast-1.elasticbeanstalk.com',
+    // apiHost: 'http://hifive-aws-sample.ap-northeast-1.elasticbeanstalk.com',
     /**
      * サーバのrekognitionエンドポイントにpostリクエストを投げます
      * @param formData rekognitionが受け付けるデータ
