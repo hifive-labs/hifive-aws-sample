@@ -15,7 +15,7 @@ $(() => {
       _dialogController: {
         // DialogControllerをidがpost-dialogであるDOM要素にバインド
         // ref: https://www.htmlhifive.com/conts/web/view/reference/controller_meta#HrootElement
-        rootElement: '#post-dialog',
+        rootElement: '#post-dialog'
       }
     },
 
@@ -33,11 +33,13 @@ $(() => {
 
       // idがpreview-image-wrapperである要素にimgタグを追加することで、選択された画像のプレビューを表示する
       imagePreviewDOM.empty(); // FIXME
-      imagePreviewDOM.append($('<img>').attr({
-        src: context.evArg.fileUrl,
-        id: "preview-image",
-        title: context.evArg.file.name,
-      }));
+      imagePreviewDOM.append(
+        $('<img>').attr({
+          src: context.evArg.fileUrl,
+          id: 'preview-image',
+          title: context.evArg.file.name
+        })
+      );
     },
 
     '{rootElement} rekognized': function(context, $el) {
@@ -52,7 +54,7 @@ $(() => {
       for (const l of context.evArg.Labels) {
         tableBody.append(createLabelTableRow(l.Name, l.Confidence));
       }
-    },
+    }
   };
 
   // RootControllerを登録
@@ -68,7 +70,11 @@ $(() => {
  */
 const createLabelTableRow = (labelName, confidence) => {
   const tr = $('<tr>');
-  tr.append($('<td>').attr({class: 'mdl-data-table__cell--non-numeric'}).text(labelName));
+  tr.append(
+    $('<td>')
+      .attr({ class: 'mdl-data-table__cell--non-numeric' })
+      .text(labelName)
+  );
   tr.append($('<td>').text(confidence));
   return tr;
 };

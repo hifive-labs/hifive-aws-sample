@@ -20,10 +20,10 @@ $(() => {
         processData: false,
         contentType: false,
         data: formData,
-        dataType: 'json',
+        dataType: 'json'
       });
       return promise;
-    },
+    }
   };
   h5.core.expose(rekognitionLogic);
 });
