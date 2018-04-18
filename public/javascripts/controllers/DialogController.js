@@ -55,6 +55,9 @@ $(() => {
       // バブリングを阻止して、submitとしての役割を止める
       context.event.preventDefault();
 
+      // プログレスバーを動かす
+      this.$find('#dialog-progress').addClass('mdl-progress__indeterminate');
+
       const fd = new FormData();
       fd.append('image', this.$find('#uploadBtn').prop('files')[0]);
 
@@ -69,6 +72,8 @@ $(() => {
           console.error(error);
         })
         .always(() => {
+          // プログレスバーを止める
+          this.$find('#dialog-progress').removeClass('mdl-progress__indeterminate');
           // 成功、失敗に関わらずダイアログを閉じる
           this.closeDialog();
         });
