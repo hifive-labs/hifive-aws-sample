@@ -30,3 +30,20 @@ a {
 .mdl-textfield--file .mdl-button--file {
     right: 0;
 }
+
+#input-form {
+    text-align:center;
+}
+
+#upload-file-button {
+    width: 100%;
+}
+
+#preview-image-wrapper {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#preview-image {
+    height: 200px;
+}
