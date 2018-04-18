@@ -2,20 +2,24 @@
 
 $(() => {
   const RootController = {
-    //
     // ref: https://www.htmlhifive.com/conts/web/view/tutorial/controller#H57FA672C69CB6587
     __name: 'RootController',
 
     // 子コントローラの設定
     // DialogControllerはpublic/javascripts/controllers/DialogController.jsで定義されている
+    // LabelTableControllerはpublic/javascripts/controllers/LabelTableController.jsで定義されている
     // ref: https://www.htmlhifive.com/conts/web/view/tutorial/interacting-with-controllers#H5B5030B330F330C830ED30FC30E9306E5B9A7FA9
     _dialogController: DialogController,
+    _labelTableController: LabelTableController,
 
     __meta: {
       _dialogController: {
         // DialogControllerをidがpost-dialogであるDOM要素にバインド
         // ref: https://www.htmlhifive.com/conts/web/view/reference/controller_meta#HrootElement
         rootElement: '#post-dialog'
+      },
+      _labelTableController: {
+        rootElement: '#label-table'
       }
     },
 
@@ -49,11 +53,8 @@ $(() => {
       this.$find('#result_area').val(JSON.stringify(context.evArg));
       this.$find('#result_area')[0].parentNode.MaterialTextfield.checkDirty(); // これをやらないとテキストエリアのlabelが消えない
 
-      // tableにラベルを反映
-      const tableBody = this.$find('#label-table>tbody');
-      for (const l of context.evArg.Labels) {
-        tableBody.append(createLabelTableRow(l.Name, l.Confidence));
-      }
+      // テーブルを更新
+      this._labelTableController.update(context.evArg.Labels);
     }
   };
 
@@ -61,20 +62,3 @@ $(() => {
   // ref: https://www.htmlhifive.com/conts/web/view/tutorial/controller#H300C30B330F330C830ED30FC30E95316300D3068306FFF1F
   h5.core.controller('#container', RootController);
 });
-
-/**
- * 与えられたラベル名と信頼度からテーブルの行(tr)のjQueryオブジェクトを生成して返す
- * @param labelName ラベル名
- * @param confidence　信頼度
- * @returns {jQuery|HTMLElement} テーブルの行(tr)DnのjQueryオブジェクト
- */
-const createLabelTableRow = (labelName, confidence) => {
-  const tr = $('<tr>');
-  tr.append(
-    $('<td>')
-      .attr({ class: 'mdl-data-table__cell--non-numeric' })
-      .text(labelName)
-  );
-  tr.append($('<td>').text(confidence));
-  return tr;
-};
