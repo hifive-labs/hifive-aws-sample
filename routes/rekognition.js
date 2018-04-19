@@ -12,7 +12,7 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     // アップロード先S3バケット
-    bucket: process.env.HIFIVE_EB_SAMPLE_S3_BUCKET || 'hifive-eb-sample',
+    bucket: process.env.HIFIVE_AWS_SAMPLE_S3_BUCKET || 'hifive-aws-sample',
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },

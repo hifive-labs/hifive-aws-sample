@@ -41,13 +41,13 @@ Elasitc Beanstalkへデプロイするための設定や、S3経由でrekognitio
 
 ## beanstalk上で動作させる手順(webコンソール経由)
 
-1. GitHubからhifive-eb-sampleをzipでダウンロード
+1. GitHubからhifive-aws-sampleをzipでダウンロード
     ![](imgs/github_download.PNG)
 1. ダウンロードしたzipを一度解凍したら、中身のファイルを全部選択して右クリックし、「送る」→圧縮(zip形式)フォルダーで再度zipファイルを作成
     ![](imgs/rezip_repo.jpg)
 1. [Elastic Beanstalkのコンソール](https://ap-northeast-1.console.aws.amazon.com/elasticbeanstalk/home?region=ap-northeast-1)へアクセス
 1. 右上の「新しいアプリケーションの作成」をクリックし、名前と説明を適当に入れる
-    * ここではhifive-eb-sampleとします
+    * ここではhifive-aws-sampleとします
     ![](imgs/create_new_application.PNG)
 1. 「このアプリケーションの環境は現在存在しません。 今すぐ作成しましょう。」と表示されるので、「今すぐ作成しましょう。」をクリック
 1. 表示されたダイアログで、ウェブサーバ環境を選んで「選択」をクリック
@@ -65,14 +65,22 @@ Elasitc Beanstalkへデプロイするための設定や、S3経由でrekognitio
 1. 画面が表示されればOK
 
 ## beanstalk上で動作させる手順(CLI経由)
-TODO
+[こちら](https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/eb-cli3.html)を参考に、ebコマンドをインストールしておく必要があります。
+
+```sh
+$ git clone https://github.com/hifive-labs/hifive-aws-sample
+$ cd hifive-aws-sample
+$ eb init --platform node.js --region ap-northeast-1
+$ eb create test-env
+$ eb deploy
+```
 
 ## ローカルで動作させる手順
-あらかじめ[AWSのcredentialsの設定]()をしておいてください。
+S3とRekognitionへのFullAccessが必要なので、あらかじめAWSのcredentialsの設定をしておいてください。
 
 ```
-$ git clone https://github.com/hifive-labs/hifive-eb-sample
-$ cd hifive-eb-sample
+$ git clone https://github.com/hifive-labs/hifive-aws-sample
+$ cd hifive-aws-sample
 $ npm install
 $ npm start
 $ start http://localhost:3000
@@ -81,8 +89,8 @@ $ start http://localhost:3000
 ## クライアントのみローカルで動作させる手順
 
 ```
-$ git clone https://github.com/hifive-labs/hifive-eb-sample
-$ cd hifive-eb-sample
+$ git clone https://github.com/hifive-labs/hifive-aws-sample
+$ cd hifive-aws-sample
 $ start public/javascripts/logics/RekognitionLogic.js
 # apiHostの値を空文字列から'http://hifive-aws-sample.ap-northeast-1.elasticbeanstalk.com'に変更
 $ start public/index.html # もしくはエクスプローラからpublic/index.htmlをダブルクリック
@@ -94,4 +102,4 @@ $ start public/index.html # もしくはエクスプローラからpublic/index.
 環境変数 | 影響
 ------- | ------
 HTTPS_PROXY | AWSへのリクエストする際のプロキシ。設定されていない場合はプロキシを利用しない。
-HIFIVE_EB_SAMPLE_S3_BUCKET | 画像をアップロードする先のS3 bucket名。デフォルトは'hifive-eb-sample'
+HIFIVE_AWS_SAMPLE_S3_BUCKET | 画像をアップロードする先のS3 bucket名。デフォルトは'hifive-aws-sample'

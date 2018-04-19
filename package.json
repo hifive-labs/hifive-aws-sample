@@ -1,5 +1,5 @@
 {
-  "name": "hifive-eb-sample",
+  "name": "hifive-aws-sample",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -33,13 +33,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hifive-labs/hifive-eb-sample.git"
+    "url": "git+https://github.com/hifive-labs/hifive-aws-sample.git"
   },
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/hifive-labs/hifive-eb-sample/issues"
+    "url": "https://github.com/hifive-labs/hifive-aws-sample/issues"
   },
-  "homepage": "https://github.com/hifive-labs/hifive-eb-sample#readme"
+  "homepage": "https://github.com/hifive-labs/hifive-aws-sample#readme"
 }

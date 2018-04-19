@@ -5,7 +5,7 @@
  */
 
 const app = require('../app');
-const debug = require('debug')('hifive-eb-sample:server');
+const debug = require('debug')('hifive-aws-sample:server');
 const http = require('http');
 
 /**

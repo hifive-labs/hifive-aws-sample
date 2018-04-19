@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
 module.exports = app;
 
 // S3 initialize FIXME
-const bucketName = process.env.HIFIVE_EB_SAMPLE_S3_BUCKET || 'hifive-eb-sample';
+const bucketName = process.env.HIFIVE_AWS_SAMPLE_S3_BUCKET || 'hifive-aws-sample';
 S3Service.createS3BucketIfDoesNotExist(bucketName, (err, data) => {
   if (err) {
     console.error('S3 bucket creating is failed: ' + bucketName);
