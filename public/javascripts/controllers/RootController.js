@@ -50,15 +50,37 @@ $(() => {
       // this.trigger('rekognized', data)でrekognizedイベントが発火するとこのメソッドが呼ばれる。
       // triggerで渡されたデータ(このケースでは画像識別結果のオブジェクト)はcontext.evArgに格納されている。
       // ref: https://www.htmlhifive.com/conts/web/view/tutorial/controller#H7B2C15F156570FF1A30A430D930F330C830B330F330C630AD30B930C8
+      const labels = context.evArg.Labels;
+
       this.$find('#result_area').val(JSON.stringify(context.evArg));
       this.$find('#result_area')[0].parentNode.MaterialTextfield.checkDirty(); // これをやらないとテキストエリアのlabelが消えない
 
       // テーブルを更新
-      this._labelTableController.update(context.evArg.Labels);
+      this._labelTableController.update(labels);
+
+      // 猫の画像だった場合は背景をピンクにする
+      const backgroundColor = hasReliableLabel(labels, 'Cat', 50) ? 'pink' : 'white';
+      $(this.rootElement).css('background', backgroundColor);
     }
   };
 
   // RootControllerを登録
   // ref: https://www.htmlhifive.com/conts/web/view/tutorial/controller#H300C30B330F330C830ED30FC30E95316300D3068306FFF1F
   h5.core.controller('#container', RootController);
+
+  /**
+   * 指定された名前のラベルが指定された信頼度以上で存在するかを返す
+   * @param labels 検索対象のラベルリスト
+   * @param name チェックするラベル名
+   * @param confidence ラベルがここで指定した信頼度以上であれば戻り値がtrueになる
+   * @returns {boolean} 指定された名前のラベルが指定された信頼度以上で存在するか
+   */
+  const hasReliableLabel = (labels, name, confidence) => {
+    for (const label of labels) {
+      if (label.Name === name && label.Confidence >= confidence) {
+        return true
+      }
+    }
+    return false
+  };
 });
