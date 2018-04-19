@@ -52,9 +52,6 @@ $(() => {
       // ref: https://www.htmlhifive.com/conts/web/view/tutorial/controller#H7B2C15F156570FF1A30A430D930F330C830B330F330C630AD30B930C8
       const labels = context.evArg.Labels;
 
-      this.$find('#result_area').val(JSON.stringify(context.evArg));
-      this.$find('#result_area')[0].parentNode.MaterialTextfield.checkDirty(); // これをやらないとテキストエリアのlabelが消えない
-
       // テーブルを更新
       this._labelTableController.update(labels);
 
