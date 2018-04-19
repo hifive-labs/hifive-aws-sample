@@ -8,13 +8,7 @@ $(() => {
      * @param labels 画像ラベルのリスト
      */
     update: function(labels) {
-      const tableBody = this.$find('tbody');
-      // empty()は呼び出し元のDOMの子要素であるDOMを全て削除します。
-      tableBody.empty();
-      for (const label of labels) {
-        // append()は呼び出し元のDOMの子要素としてDOMを追加します。
-        tableBody.append(createLabelTableRow(label.Name, label.Confidence));
-      }
+      // ラベルに応じてテーブルを更新する処理を書く
     },
   };
   h5.core.expose(LabelTableController);

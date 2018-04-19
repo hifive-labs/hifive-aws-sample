@@ -25,35 +25,42 @@
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 <body>
-<header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
+<!--<header class="mdl-layout__header">-->
+    <!--<div class="mdl-layout__header-row">-->
         <span class="mdl-layout-title">hifive AWS Sample</span>
-    </div>
-</header>
+    <!--</div>-->
+<!--</header>-->
+
 <div id="container" class="mdl-grid">
     <div class="mdl-layout-spacer"></div>
     <div id="input-form" class="mdl-cell mdl-cell--6-col">
-        <button id="upload-file-button" type="button" class="mdl-button show-modal">画像認識をする</button>
+        <button id="upload-file-button" type="button" class="show-modal">画像認識をする</button>
     </div>
     <div class="mdl-layout-spacer"></div>
     <div id="preview-image-wrapper" class="mdl-cell mdl-cell--12-col"></div>
 
+    <div id="result" class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <textarea id="result_area" name="result" class="" type="text"></textarea>
+        <!--<textarea id="result_area" name="result" class="mdl-textfield__input" type="text"></textarea>-->
+        <label class="mdl-textfield__label" for="result">ここに結果が出ます</label>
+    </div>
+
     <div id="label-table-wrapper" class="mdl-cell mdl-cell--12-col">
-        <table id="label-table" align="center" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="mdl-data-table__cell--non-numeric">Label</th>
-                <th>Confidence</th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <!--<table id="label-table" align="center" class="mdl-data-table mdl-js-data-table mdl-shadow&#45;&#45;2dp">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th class="mdl-data-table__cell&#45;&#45;non-numeric">Label</th>-->
+                <!--<th>Confidence</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody></tbody>-->
+        <!--</table>-->
     </div>
 
     <div id="post-dialog">
         <dialog class="mdl-dialog">
             <div class="mdl-dialog__content">
-                <div id="dialog-progress" class="mdl-progress mdl-js-progress"></div>
+                <!--<div id="dialog-progress" class="mdl-progress mdl-js-progress"></div>-->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
                     <input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly/>
                     <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">

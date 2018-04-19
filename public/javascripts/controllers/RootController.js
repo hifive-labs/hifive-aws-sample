@@ -10,7 +10,6 @@ $(() => {
     // LabelTableControllerはpublic/javascripts/controllers/LabelTableController.jsで定義されている
     // ref: https://www.htmlhifive.com/conts/web/view/tutorial/interacting-with-controllers#H5B5030B330F330C830ED30FC30E9306E5B9A7FA9
     _dialogController: DialogController,
-    _labelTableController: LabelTableController,
 
     __meta: {
       _dialogController: {
@@ -18,9 +17,6 @@ $(() => {
         // ref: https://www.htmlhifive.com/conts/web/view/reference/controller_meta#HrootElement
         rootElement: '#post-dialog'
       },
-      _labelTableController: {
-        rootElement: '#label-table'
-      }
     },
 
     // 「画像認識をする」ボタンが押されると呼ばれる
@@ -52,12 +48,9 @@ $(() => {
       // ref: https://www.htmlhifive.com/conts/web/view/tutorial/controller#H7B2C15F156570FF1A30A430D930F330C830B330F330C630AD30B930C8
       const labels = context.evArg.Labels;
 
-      // テーブルを更新
-      this._labelTableController.update(labels);
-
-      // 猫の画像だった場合は背景をピンクにする
-      const backgroundColor = hasReliableLabel(labels, 'Cat', 50) ? 'pink' : 'white';
-      $(this.rootElement).css('background', backgroundColor);
+      this.$find('#result_area').val(JSON.stringify(context.evArg));
+      // MDLのtextfieldにテキストを入れるときは以下をやらないとテキストエリアのlabelが消えない
+      // this.$find('#result_area')[0].parentNode.MaterialTextfield.checkDirty();
     }
   };
 
